@@ -1,5 +1,3 @@
-data "aws_availability_zones" "availability_zones" {}
-
 resource "aws_vpc" "vpc" {
   cidr_block           = "${var.vpc_cidr}"
   enable_dns_hostnames = true
@@ -12,7 +10,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_vpc_dhcp_options" "vpc_dhcp_options" {
-  domain_name         = "${var.aws_region}.compute.internal"
+  domain_name         = "${data.aws_region.current.name}.compute.internal"
   domain_name_servers = ["AmazonProvidedDNS"]
 
   tags {
