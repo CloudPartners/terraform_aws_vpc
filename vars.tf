@@ -1,9 +1,19 @@
-variable "vpc_cidr" {
-  description = "CIDR for the VPC"
+variable "cidr" {
+  description = "The CIDR block for the VPC"
+}
+
+variable "enable_dns_support" {
+  description = "A boolean flag to enable/disable DNS support in the VPC"
+  default     = true
+}
+
+variable "enable_dns_hostnames" {
+  description = "A boolean flag to enable/disable DNS hostnames in the VPC"
+  default     = false
 }
 
 variable "environment" {
-  description = "General name of the environment - used in generated tag mappings for naming of resources"
+  description = "General environment name - used in generated tag mappings and naming of resources"
 }
 
 variable "tags" {

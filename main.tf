@@ -1,6 +1,7 @@
 resource "aws_vpc" "vpc" {
-  cidr_block           = "${var.vpc_cidr}"
-  enable_dns_hostnames = true
+  cidr_block           = "${var.cidr}"
+  enable_dns_support   = "${var.enable_dns_support}"
+  enable_dns_hostnames = "${var.enable_dns_hostnames}"
   tags                 = "${merge(var.tags, map("Name", format("%s", var.environment)))}"
 }
 
@@ -22,7 +23,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 
 resource "aws_subnet" "subnet_public_1" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  cidr_block              = "${cidrsubnet(var.vpc_cidr, 8, 0)}"
+  cidr_block              = "${cidrsubnet(var.cidr, 8, 0)}"
   availability_zone       = "${data.aws_availability_zones.availability_zones.names[0]}"
   map_public_ip_on_launch = true
   tags                    = "${merge(var.tags, map("Name", format("%s-PUBLIC-1", var.environment)))}"
@@ -30,7 +31,7 @@ resource "aws_subnet" "subnet_public_1" {
 
 resource "aws_subnet" "subnet_public_2" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  cidr_block              = "${cidrsubnet(var.vpc_cidr, 8, 100)}"
+  cidr_block              = "${cidrsubnet(var.cidr, 8, 100)}"
   availability_zone       = "${data.aws_availability_zones.availability_zones.names[1]}"
   map_public_ip_on_launch = true
   tags                    = "${merge(var.tags, map("Name", format("%s-PUBLIC-2", var.environment)))}"
@@ -38,56 +39,56 @@ resource "aws_subnet" "subnet_public_2" {
 
 resource "aws_subnet" "subnet_web_1" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 10)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 10)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[0]}"
   tags              = "${merge(var.tags, map("Name", format("%s-WEB-1", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_web_2" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 110)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 110)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[1]}"
   tags              = "${merge(var.tags, map("Name", format("%s-WEB-2", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_services_1" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 20)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 20)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[0]}"
   tags              = "${merge(var.tags, map("Name", format("%s-SERVICES-1", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_services_2" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 120)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 120)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[1]}"
   tags              = "${merge(var.tags, map("Name", format("%s-SERVICES-2", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_cache_1" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 30)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 30)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[0]}"
   tags              = "${merge(var.tags, map("Name", format("%s-CACHE-1", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_cache_2" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 130)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 130)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[1]}"
   tags              = "${merge(var.tags, map("Name", format("%s-CACHE-2", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_data_1" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 40)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 40)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[0]}"
   tags              = "${merge(var.tags, map("Name", format("%s-DATA-1", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_data_2" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(var.vpc_cidr, 8, 140)}"
+  cidr_block        = "${cidrsubnet(var.cidr, 8, 140)}"
   availability_zone = "${data.aws_availability_zones.availability_zones.names[1]}"
   tags              = "${merge(var.tags, map("Name", format("%s-DATA-2", var.environment)))}"
 }
