@@ -188,10 +188,6 @@ resource "aws_default_network_acl" "default_network_acl" {
   }
 }
 
-resource "aws_eip" "eip_nat" {
-  vpc = true
-}
-
 resource "aws_default_route_table" "route_table_private" {
   default_route_table_id = "${aws_vpc.vpc.default_route_table_id}"
 
@@ -227,6 +223,11 @@ resource "aws_route" "route_internet_gateway" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.internet_gateway.id}"
 }
+
+# resource "aws_eip" "eip_nat" {
+#   vpc = true
+# }
+
 
 # resource "aws_nat_gateway" "nat_gateway" {
 #   allocation_id = "${aws_eip.eip_nat.id}"
