@@ -3,12 +3,12 @@ variable "cidr" {
 }
 
 variable "enable_dns_support" {
-  description = "A boolean flag to enable/disable DNS support in the VPC"
+  description = "Boolean flag to enable/disable DNS support in the VPC"
   default     = true
 }
 
 variable "enable_dns_hostnames" {
-  description = "A boolean flag to enable/disable DNS hostnames in the VPC"
+  description = "Boolean flag to enable/disable DNS hostnames in the VPC"
   default     = false
 }
 
