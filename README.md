@@ -16,7 +16,7 @@ module "vpc" {
 }
 ```
 
-The opinionated bit is in reference to the subnets / cidr blocks that are created.  The following table shows the assumed conventions, based on the CIDR block specified for the VPC.  The AZ alternates between the first two AZs in the Region defined by the AWS provider in the calling template.
+The opinionated bit is in reference to the subnets / cidr blocks that are created.  The following table shows the assumed conventions, based on the CIDR block specified for the VPC.  The AZ alternates between the first two AZs in the Region defined by the AWS provider in the calling template.  Public subnets are set to auto-assign Public IP addresses.
 
 | Subnet        | Type        | AZ | CIDR                         |
 | ------------- | ----------- | -- | ---------------------------- |
