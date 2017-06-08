@@ -31,9 +31,9 @@ The opinionated bit is in reference to the subnets / cidr blocks that are create
 | Data 1        | PRIVATE     |  0 | cidrsubnet(var.cidr, 8, 40)  |
 | Data 2        | PRIVATE     |  1 | cidrsubnet(var.cidr, 8, 140) |
 
-# Variables
+# Inputs
 
-The following variables can be specified:
+The following input variables can be specified:
 
 | Variable               | Description                                                                       | Required | Default |
 | ---------------------- | --------------------------------------------------------------------------------- | :------: | ------- |
@@ -42,3 +42,26 @@ The following variables can be specified:
 | `enable_dns_hostnames` | Boolean flag to enable/disable DNS hostnames in the VPC                           | N        | false   |
 | `environment`          | General environment name - used in generated tag mappings and naming of resources | Y        | -       |
 | `tags`                 | Generic tag map to inject into resources in this module                           | N        | {}      |
+
+# Outputs
+
+The following output variables are provided:
+
+| Variable                      | Description                                                                       |
+| ----------------------------- | --------------------------------------------------------------------------------- |
+| `vpc_id`                      | The ID of the new AWS VPC                                                         |
+| `public_subnet_ids`           | List of 'Public x' subnet IDs (see above)                                         |
+| `public_subnet_cidr_blocks`   | List of 'Public x' subnet CIDR blocks (see above)                                 |
+| `public_subnet_azs`           | List of 'Public x' subnet AZs (see above)                                         |
+| `web_subnet_ids`              | List of 'Web x' subnet IDs (see above)                                            |
+| `web_subnet_cidr_blocks`      | List of 'Web x' subnet CIDR blocks (see above)                                    |
+| `web_subnet_azs`              | List of 'Web x' subnet AZs (see above)                                            |
+| `services_subnet_ids`         | List of 'Services x' subnet IDs (see above)                                       |
+| `services_subnet_cidr_blocks` | List of 'Services x' subnet CIDR blocks (see above)                               |
+| `services_subnet_azs`         | List of 'Services x' subnet AZs (see above)                                       |
+| `cache_subnet_ids`            | List of 'Cache x' subnet IDs (see above)                                          |
+| `cache_subnet_cidr_blocks`    | List of 'Cache x' subnet CIDR blocks (see above)                                  |
+| `cache_subnet_azs`            | List of 'Cache x' subnet AZs (see above)                                          |
+| `data_subnet_ids`             | List of 'Data x' subnet IDs (see above)                                           |
+| `data_subnet_cidr_blocks`     | List of 'Data x' subnet CIDR blocks (see above)                                   |
+| `data_subnet_azs`             | List of 'Data x' subnet AZs (see above)                                           |
