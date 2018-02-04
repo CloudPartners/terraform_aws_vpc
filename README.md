@@ -10,9 +10,14 @@ module "vpc" {
   environment          = "${var.environment}"
 
   tags {
-    CostCentre  = "${var.environment}"
+    CostCentre  = "VPC"
     Environment = "${var.environment}"
   }
+
+  igw_tags {
+    CostCentre  = "IGW"
+    Environment = "${var.environment}"
+  }  
 }
 ```
 
@@ -42,6 +47,7 @@ The following input variables can be specified:
 | `enable_dns_hostnames` | Boolean flag to enable/disable DNS hostnames in the VPC                           | N        | false   |
 | `environment`          | General environment name - used in generated tag mappings and naming of resources | Y        | -       |
 | `tags`                 | Generic tag map to inject into resources in this module                           | N        | {}      |
+| `igw_tags`             | Generic tag map to inject into IGW resources in this module                       | N        | {}      |
 
 # Outputs
 

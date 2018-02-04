@@ -20,3 +20,8 @@ variable "tags" {
   description = "Generic tag map to inject into resources in this module"
   default     = {}
 }
+
+variable "igw_tags" {
+  description = "Generic tag map to inject into resources in this module"
+  default     = {}
+}

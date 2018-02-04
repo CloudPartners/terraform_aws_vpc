@@ -18,7 +18,7 @@ resource "aws_vpc_dhcp_options_association" "vpc_dhcp_options_association" {
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = "${aws_vpc.vpc.id}"
-  tags   = "${merge(var.tags, map("Name", format("%s", var.environment)))}"
+  tags   = "${merge(var.igw_tags, map("Name", format("%s", var.environment)))}"
 }
 
 resource "aws_subnet" "subnet_public_1" {
