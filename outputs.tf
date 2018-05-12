@@ -2,6 +2,10 @@ output "vpc_id" {
   value = "${aws_vpc.vpc.id}"
 }
 
+output "vpc_default_route_table_id" {
+  value = "${aws_vpc.vpc.default_route_table_id}"
+}
+
 output "public_subnet_ids" {
   value = ["${aws_subnet.subnet_public_1.id}", "${aws_subnet.subnet_public_2.id}"]
 }
