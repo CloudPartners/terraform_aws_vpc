@@ -144,11 +144,13 @@ resource "aws_route" "route_internet_gateway" {
 }
 
 resource "aws_eip" "eip_nat" {
-  vpc  = true
-  tags = "${merge(var.nat_tags, map("Name", format("%s", var.environment)))}"
+  count = "${var.enable_nat_gateway ? 1 : 0}"
+  vpc   = true
+  tags  = "${merge(var.nat_tags, map("Name", format("%s", var.environment)))}"
 }
 
 resource "aws_nat_gateway" "nat_gateway" {
+  count         = "${var.enable_nat_gateway ? 1 : 0}"
   allocation_id = "${aws_eip.eip_nat.id}"
   subnet_id     = "${aws_subnet.subnet_public_1.id}"
   depends_on    = ["aws_internet_gateway.internet_gateway"]
@@ -156,6 +158,7 @@ resource "aws_nat_gateway" "nat_gateway" {
 }
 
 resource "aws_route" "route_nat_gateway" {
+  count                  = "${var.enable_nat_gateway ? 1 : 0}"
   route_table_id         = "${aws_vpc.vpc.default_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = "${aws_nat_gateway.nat_gateway.id}"

@@ -12,6 +12,11 @@ variable "enable_dns_hostnames" {
   default     = false
 }
 
+variable "enable_nat_gateway" {
+  description = "Boolean flag to enable/disable creation of a NAT gateway in the VPC, and associated routes"
+  default     = true
+}
+
 variable "environment" {
   description = "General environment name - used in generated tag mappings and naming of resources"
 }
